@@ -1,12 +1,11 @@
+from main_app import views as main_views
 from django.contrib import admin
 from django.urls import path, include
-from music_library_app import views
-from music_project import views as main_views
-from django.contrib.auth import views as auth_views
-
+from main_app import views as main_views
 
 urlpatterns = [
-    path('', main_views.index),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('<username>/library', include('music_library_app.urls'))
+    path('', include('main_app.urls')),
+    path('admin/', admin.site.urls),
+    path('authentication/', include('authentication_users.urls')),
+    path('profile/', include('music_library_app.urls')),
 ]

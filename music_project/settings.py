@@ -1,8 +1,12 @@
 import os
 from configurations import Configuration
 
+class AuthenticationMixin():
 
-class Base(Configuration):
+    LOGIN_REDIRECT_URL = '/profile/login_redirect/'
+
+
+class Base(AuthenticationMixin, Configuration):
 
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -21,6 +25,8 @@ class Base(Configuration):
         'django.contrib.staticfiles',
         'django_extensions',
         'music_library_app',
+        'authentication_users',
+        'main_app',
         'rest_framework',
     ]
 
@@ -79,8 +85,6 @@ class Base(Configuration):
             'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
         },
     ]
-
-    LOGIN_REDIRECT_URL = '/'
 
     LANGUAGE_CODE = 'en-us'
 
